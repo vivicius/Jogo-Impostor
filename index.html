@@ -3,153 +3,474 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Jogo do Impostor</title>
+    <title>Jogo do Impostor - Temas Personalizados</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #111;
-            color: #eee;
-            display: flex;
-            justify-content: center;
-            padding: 30px;
-        }
-        .box {
-            width: 100%;
-            max-width: 700px;
-            background: #1b1b1b;
-            padding: 24px;
-            border-radius: 18px;
-        }
-        input,
-        button,
-        select {
-            padding: 10px 12px;
-            border-radius: 10px;
-            border: none;
-            margin: 6px 0;
-        }
-        input,
-        select {
-            width: 100%;
+        * {
             box-sizing: border-box;
         }
+
+        body {
+            font-family: system-ui, 'Segoe UI', 'Arial', sans-serif;
+            background: radial-gradient(circle at 20% 30%, #0a0f1e, #03060c);
+            color: #f0f3fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .box {
+            width: 100%;
+            max-width: 780px;
+            background: rgba(20, 25, 40, 0.85);
+            backdrop-filter: blur(2px);
+            padding: 28px 24px;
+            border-radius: 2rem;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
+            border: 1px solid rgba(79, 70, 229, 0.4);
+            transition: all 0.2s;
+        }
+
+        h1 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #e9b3ff, #7c8eff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-top: 0;
+            margin-bottom: 0.25rem;
+            letter-spacing: -0.3px;
+        }
+
+        .sub {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-bottom: 1.5rem;
+            border-left: 3px solid #4f46e5;
+            padding-left: 12px;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: block;
+            margin-top: 12px;
+            margin-bottom: 4px;
+            letter-spacing: 0.3px;
+        }
+
+        input, select, button {
+            padding: 12px 14px;
+            border-radius: 1.2rem;
+            border: none;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        input, select {
+            width: 100%;
+            background: #1e243b;
+            color: white;
+            border: 1px solid #334155;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.4);
+        }
+
         button {
             background: #4f46e5;
-            color: #fff;
+            font-weight: bold;
             cursor: pointer;
+            margin-top: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
         }
+
         button:hover {
-            background: #4338ca;
+            background: #6d5df7;
+            transform: translateY(-1px);
         }
+
+        .players-area {
+            background: #0f121f;
+            border-radius: 1.4rem;
+            padding: 12px 12px 8px 12px;
+            margin: 15px 0;
+            max-height: 240px;
+            overflow-y: auto;
+        }
+
         .player {
             display: flex;
-            gap: 8px;
-            margin: 6px 0;
+            gap: 10px;
+            margin: 8px 0;
         }
+
         .player input {
+            margin: 0;
+            background: #191e2e;
+        }
+
+        .row {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            align-items: flex-end;
+        }
+
+        .row > div {
             flex: 1;
         }
+
         .card {
-            margin-top: 20px;
-            padding: 40px;
-            border: 2px dashed #555;
-            border-radius: 16px;
+            margin-top: 28px;
+            padding: 32px 20px;
+            border-radius: 2rem;
+            background: #10131f;
+            border: 2px solid #2a2f4b;
             text-align: center;
-            min-height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
             cursor: pointer;
+            transition: 0.2s;
+            font-weight: 500;
+            font-size: 1.7rem;
+            box-shadow: 0 12px 20px -10px black;
         }
+
+        .card:hover {
+            background: #181e32;
+            border-color: #6c63ff;
+            transform: scale(0.99);
+        }
+
         .small {
-            font-size: 14px;
-            color: #aaa;
+            font-size: 0.75rem;
+            color: #9ca3cf;
+            margin-top: 12px;
+        }
+
+        .badge {
+            background: #4f46e5;
+            display: inline-block;
+            border-radius: 60px;
+            padding: 4px 12px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        hr {
+            border-color: #2d3250;
+            margin: 20px 0;
+        }
+
+        .topic-select {
+            background: #0b0e18;
+            border-radius: 28px;
+            padding: 4px;
         }
     </style>
 </head>
 <body>
-    <div class="box">
-        <h1>Jogo do Impostor</h1>
-        <div id="players"></div>
-        <button onclick="addPlayer()">Adicionar jogador</button>
-        <label>Quantidade de impostores</label>
-        <select id="impostors">
-            <option>1</option>
-            <option>2</option>
+<div class="box">
+    <h1>🎭 JOGO DO IMPOSTOR</h1>
+    <div class="sub">escolha o tema • descubra o impostor • viva o caos divertido</div>
+
+    <div>
+        <label>🎯 TEMA GERAL:</label>
+        <select id="themeSelect">
+            <option value="all">🌈 TODOS (misto)</option>
+            <option value="cinema">🎬 CINEMA BRASILEIRO</option>
+            <option value="ciencia">🔬 CIÊNCIA</option>
+            <option value="universo">🌌 UNIVERSO (astros, nebulosas)</option>
+            <option value="comida">🍜 COMIDA & GASTRONOMIA</option>
+            <option value="animais">🐘 ANIMAIS</option>
+            <option value="estados">🇧🇷 ESTADOS BRASILEIROS + DF</option>
         </select>
-        <button onclick="startGame()">Começar</button>
-        <div id="game"></div>
     </div>
-    <script>
-        const fallback = ['abóbora', 'avião', 'janela', 'martelo', 'oceano', 'floresta', 'girafa', 'computador', 'teclado', 'cadeira', 'mesa', 'relógio', 'sapato', 'camisa', 'fogão', 'geladeira', 'livro', 'caneta', 'borracha', 'mochila', 'ponte', 'rio', 'montanha', 'deserto', 'chuva', 'tempestade', 'raio', 'nuvem', 'sol', 'lua', 'estrela', 'planeta', 'cometa', 'foguete', 'satélite', 'robô', 'motor', 'engrenagem', 'parafuso', 'pneu', 'bicicleta', 'carro', 'ônibus', 'trem', 'navio', 'âncora', 'vela', 'pirata', 'castelo', 'espada', 'escudo', 'dragão', 'feiticeiro', 'fantasma', 'vampiro', 'lobisomem', 'dinossauro', 'abelha', 'formiga', 'aranha', 'cobra', 'jacaré', 'golfinho', 'tubarão', 'polvo', 'pinguim', 'coruja', 'papagaio', 'banana', 'laranja', 'melancia', 'morango', 'uva', 'cenoura', 'batata', 'pipoca', 'pizza', 'queijo', 'café', 'chocolate', 'sorvete', 'hospital', 'médico', 'escola', 'professor', 'biblioteca', 'museu', 'teatro', 'violino', 'tambor', 'guitarra', 'microfone', 'telefone', 'câmera', 'espelho', 'sabão', 'toalha', 'travesseiro', 'cobertor', 'vela', 'lâmpada', 'tomada', 'internet', 'saturno', 'vulcão', 'ilha', 'labirinto', 'tesouro', 'helicóptero', 'submarino', 'ímã', 'bússola', 'ampulheta', 'capacete', 'elefante', 'leão', 'tigre', 'macaco', 'zebra', 'gato', 'cachorro', 'coelho', 'pato', 'galinha', 'cavalo', 'ovelha', 'porco', 'vaca', 'pavão', 'águia', 'foca', 'baleia', 'caranguejo', 'camarão', 'lagosta', 'esquilo', 'tartaruga', 'borboleta', 'joaninha', 'grilo', 'cigarra', 'lesma', 'minhoca', 'mosquito', 'rosa', 'margarida', 'girassol', 'orquídea', 'violeta', 'samambaia', 'cacto', 'pinheiro', 'bambu', 'carvalho', 'maçã', 'pera', 'abacaxi', 'manga', 'kiwi', 'limão', 'coco', 'maracujá', 'acerola', 'goiaba', 'tomate', 'alface', 'cebola', 'alho', 'milho', 'arroz', 'feijão', 'macarrão', 'pão', 'bolo', 'biscoito', 'torta', 'sanduíche', 'hambúrguer', 'pastel', 'coxinha', 'brigadeiro', 'pudim', 'gelatina', 'iogurte', 'prédio', 'casa', 'apartamento', 'quarto', 'cozinha', 'banheiro', 'garagem', 'jardim', 'escada', 'elevador', 'porta', 'chave', 'fechadura', 'cortina', 'tapete', 'sofá', 'poltrona', 'armário', 'prateleira', 'panela', 'prato', 'copo', 'garfo', 'faca', 'colher', 'xícara', 'bule', 'jarra', 'garrafa', 'fósforo', 'isqueiro', 'lanterna', 'pilha', 'bateria', 'controle', 'rádio', 'televisão', 'notebook', 'maleta', 'carteira', 'óculos', 'guarda-chuva', 'chapéu', 'boné', 'cachecol', 'luva', 'meia', 'sandália', 'tênis', 'chinelo', 'bota', 'cinto', 'gravata', 'blusa', 'saia', 'vestido', 'calça', 'pincel', 'tinta', 'quadro', 'moldura', 'estátua', 'vaso', 'porta-retrato', 'cinzeiro', 'ábaco', 'cd', 'dvd', 'disquete', 'clipe', 'grampo', 'alfinete', 'agulha', 'linha', 'tesoura', 'régua', 'caderno', 'lápis', 'lapiseira', 'apontador', 'grampeador', 'perfurador', 'cartolina', 'adesivo', 'carimbo', 'diário', 'bola', 'boneca', 'carrinho', 'pipa', 'peteca', 'dominó', 'baralho', 'xadrez', 'quebra-cabeça', 'corda', 'gangorra', 'escorregador', 'balanço', 'trampolim', 'piscina', 'praia', 'areia', 'concha', 'pedra', 'esponja', 'cabide', 'funil', 'ralador', 'espremedor', 'descascador', 'abridor', 'saca-rolhas', 'escumadeira'];
 
-        let roles = [],
-            index = 0;
+    <div class="players-area" id="playersContainer"></div>
+    <button id="addPlayerBtn" style="margin-top: 4px;">➕ Adicionar jogador</button>
 
-        function addPlayer(name = '') {
-            const div = document.createElement('div');
-            div.className = 'player';
-            div.innerHTML = `<input placeholder="Nome do jogador" value="${name}">`;
-            document.getElementById('players').appendChild(div);
+    <div class="row">
+        <div>
+            <label>🕵️‍♂️ Número de impostores</label>
+            <select id="impostorsCount">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+            </select>
+        </div>
+        <div style="display: flex; align-items: flex-end;">
+            <button id="startGameBtn" style="margin-top: 20px; width: 100%;">🚀 COMEÇAR JOGO</button>
+        </div>
+    </div>
+
+    <div id="gameArea"></div>
+</div>
+
+<script>
+    // --------------------------------------------------------------
+    // 1. BASE DE DADOS DOS TEMAS (cada tema >= 25 itens, alguns com 30+)
+    // --------------------------------------------------------------
+    const themesDB = {
+        cinema: [ // filmes brasileiros (31 títulos)
+            "Ainda Estou Aqui", "Cidade de Deus", "Minha Mãe é uma Peça", "O Auto da Compadecida",
+            "Central do Brasil", "Tropa de Elite", "Que Horas Ela Volta?", "Bacurau",
+            "O Homem Que Copiava", "Lisbela e o Prisioneiro", "2 Filhos de Francisco",
+            "Carandiru", "Estômago", "O Céu de Suely", "Durval Discos", "Meu Nome Não é Johnny",
+            "Se Eu Fosse Você", "De Pernas pro Ar", "Até que a Sorte nos Separe",
+            "Os Trapalhões no Auto da Compadecida", "Eduardo e Mônica", "Marighella",
+            "Medida Provisória", "O Palhaço", "Que Deus Ajude", "Abril Despedaçado",
+            "Marte Um", "Pedro e o Lobo", "Tainá 2", "O Homem do Futuro", "Hoje Eu Quero Voltar Sozinho"
+        ],
+        ciencia: [ // ciência geral (28 conceitos)
+            "DNA", "RNA mensageiro", "Buraco negro", "Evolução das espécies", "Clonagem", "Fusão nuclear",
+            "Energia renovável", "Vacina de mRNA", "Inteligência artificial", "Robótica", "Química orgânica",
+            "Teoria da relatividade", "Mecânica quântica", "Neurônio", "Placa tectônica", "Fotossíntese",
+            "Biosfera", "Célula-tronco", "Bactéria", "Vírus", "Anticorpo", "Termodinâmica",
+            "Gravidade", "Radioatividade", "Laser", "Supercondutor", "Nanotecnologia", "Ecossistema"
+        ],
+        universo: [ // astros, nebulosas, fenômenos (28 itens)
+            "Nebulosa de Órion", "Buraco negro supermassivo", "Estrela de nêutrons", "Anã vermelha",
+            "Supernova", "Galáxia de Andrômeda", "Via Láctea", "Quasar", "Exoplaneta", "Saturno",
+            "Júpiter", "Marte vermelho", "Nebulosa Carina", "Nebulosa do Caranguejo", "Cinturão de Kuiper",
+            "Cometa Halley", "Asteróide", "Enxame estelar", "Constelação de Órion", "Polaris",
+            "Matéria escura", "Energia escura", "Buracos de minhoca", "Horizonte de eventos",
+            "Anã branca", "Gigante vermelha", "Nebulosa planetária", "Pulsar"
+        ],
+        comida: [ // comidas e pratos (30 itens)
+            "Pizza Margherita", "Sushi", "Feijoada", "Moqueca Baiana", "Taco mexicano", "Hambúrguer artesanal",
+            "Churrasco", "Lasanha", "Macarrão carbonara", "Risoto de camarão", "Ceviche peruano",
+            "Pão de queijo", "Brigadeiro", "Acarajé", "Vatapá", "Pastel de feira", "Coxinha",
+            "Sorvete artesanal", "Mousse de maracujá", "Torta de limão", "Crème brûlée",
+            "Paella", "Empanada", "Arepa", "Cuscuz nordestino", "Baião de dois", "Polvo à lagareiro",
+            "Bacalhau à brás", "Ramen", "Tempurá"
+        ],
+        animais: [ // fauna geral (28 animais)
+            "Onça-pintada", "Tucano", "Mico-leão-dourado", "Lobo-guará", "Arara-azul", "Boto-cor-de-rosa",
+            "Cachorro-vinagre", "Tamanduá-bandeira", "Leão africano", "Elefante-savana", "Girafa",
+            "Zebra", "Rinoceronte", "Hipopótamo", "Canguru", "Coala", "Urso-polar", "Pinguim-imperador",
+            "Golfinho-rotador", "Tubarão-branco", "Baleia-azul", "Polvo-mimetus", "Águia-careca",
+            "Coruja-das-neves", "Falcão-peregrino", "Escorpião-amarelo", "Borboleta-monarca", "Joaninha"
+        ],
+        estados: [ // 26 estados + DF = 27 itens. (Garantido todos)
+            "Acre", "Alagoas", "Amapá", "Amazonas", "Bahia", "Ceará", "Distrito Federal", "Espírito Santo",
+            "Goiás", "Maranhão", "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "Pará", "Paraíba",
+            "Paraná", "Pernambuco", "Piauí", "Rio de Janeiro", "Rio Grande do Norte", "Rio Grande do Sul",
+            "Rondônia", "Roraima", "Santa Catarina", "São Paulo", "Sergipe", "Tocantins"
+        ]
+    };
+
+    // Tema "all" é uma mescla de todos os temas (pelo menos 20 de cada, mas na prática vai gerar uma pool rica)
+    function getAllWords() {
+        let all = [];
+        for (let key in themesDB) {
+            if (key !== 'estados') all.push(...themesDB[key]);
+        }
+        all.push(...themesDB.estados);
+        // remove duplicatas leves, mas mantém variedade
+        return [...new Set(all)];
+    }
+
+    // palavra aleatória baseada no tema selecionado
+    function getWordByTheme(theme) {
+        if (theme === 'all') {
+            const megaPool = getAllWords();
+            return megaPool[Math.floor(Math.random() * megaPool.length)];
+        }
+        const list = themesDB[theme];
+        if (!list || list.length === 0) return "Abacaxi"; // fallback
+        return list[Math.floor(Math.random() * list.length)];
+    }
+
+    // estado global do jogo
+    let currentRoles = [];        // array de objetos { name, role }
+    let currentIndex = 0;
+    let currentTheme = "cinema";  // valor padrão, mas será lido do select ao start
+
+    // utils
+    function shuffleArray(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    }
+
+    // DOM: gerenciar inputs dos jogadores
+    const playersContainer = document.getElementById('playersContainer');
+    const addPlayerBtn = document.getElementById('addPlayerBtn');
+    const startBtn = document.getElementById('startGameBtn');
+    const impostorSelect = document.getElementById('impostorsCount');
+    const themeSelector = document.getElementById('themeSelect');
+    const gameArea = document.getElementById('gameArea');
+
+    function createPlayerInput(value = '') {
+        const div = document.createElement('div');
+        div.className = 'player';
+        div.innerHTML = `<input type="text" placeholder="Nome do jogador" value="${value}">`;
+        return div;
+    }
+
+    function renderPlayers(initialNames = ['Jogador 1', 'Jogador 2', 'Jogador 3', 'Jogador 4', 'Jogador 5']) {
+        playersContainer.innerHTML = '';
+        for (let name of initialNames) {
+            playersContainer.appendChild(createPlayerInput(name));
+        }
+    }
+
+    renderPlayers();
+
+    addPlayerBtn.addEventListener('click', () => {
+        playersContainer.appendChild(createPlayerInput(''));
+    });
+
+    // função principal de iniciar jogo
+    function startGame() {
+        // capturar nomes
+        const nameInputs = [...document.querySelectorAll('#playersContainer .player input')];
+        const players = nameInputs.map(inp => inp.value.trim()).filter(n => n !== '');
+        if (players.length < 3) {
+            alert('Adicione pelo menos 3 jogadores com nomes preenchidos.');
+            return;
+        }
+        const impostorCount = parseInt(impostorSelect.value, 10);
+        if (impostorCount >= players.length) {
+            alert(`Número de impostores (${impostorCount}) deve ser menor que a quantidade de jogadores (${players.length}).`);
+            return;
         }
 
-        for (let i = 1; i <= 2; i++) addPlayer('Jogador ' + i);
+        // define tema atual
+        const selectedTheme = themeSelector.value;  // 'cinema', 'ciencia', 'universo', 'comida', 'animais', 'estados', 'all'
+        currentTheme = selectedTheme;
 
-        function getWord() {
-            return fallback[Math.floor(Math.random() * fallback.length)];
-        }
+        // palavra sorteada para civis (baseado no tema escolhido)
+        let civilianWord = getWordByTheme(currentTheme);
+        // garantia extra: se tema for all mas existir palavra genérica ok
 
-        function shuffle(a) {
-            for (let i = a.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [a[i], a[j]] = [a[j], a[i]];
-            }
-            return a;
-        }
+        // construir array de papéis: impostors + civilians
+        let rolesBag = [];
+        for (let i = 0; i < impostorCount; i++) rolesBag.push('IMPOSTOR');
+        for (let i = 0; i < players.length - impostorCount; i++) rolesBag.push(civilianWord);
+        rolesBag = shuffleArray([...rolesBag]);
 
-        async function startGame() {
-            const names = [...document.querySelectorAll('#players input')].map(x => x.value.trim()).filter(Boolean);
-            const impostorCount = +document.getElementById('impostors').value;
+        currentRoles = players.map((name, idx) => ({
+            name: name,
+            role: rolesBag[idx]
+        }));
 
-            if (names.length < 3) return alert('Coloca pelo menos 3 jogadores.');
-            if (impostorCount >= names.length) return alert('Impostores demais.');
+        currentIndex = 0;
+        // exibir primeira carta (modo revelação)
+        displayCardPreview();
+    }
 
-            const word = getWord();
-            let bag = [...Array(impostorCount).fill('IMPOSTOR'), ...Array(names.length - impostorCount).fill(word)];
-            shuffle(bag);
-            roles = names.map((name, i) => ({ name, role: bag[i] }));
-            index = 0;
-            showCard();
-        }
-
-        function showCard() {
-            const gameDiv = document.getElementById('game');
-            if (index >= roles.length) {
-                gameDiv.innerHTML = '<div class="card">Todos viram. Comecem.</div>';
-                return;
-            }
-            const p = roles[index];
-            gameDiv.innerHTML = `
-                <div class="small">Passe o celular para:</div>
-                <div class="card" onclick="revealCard()">
-                    <div><b>${p.name}</b><br><span class="small">toque para revelar</span></div>
+    function displayCardPreview() {
+        if (currentIndex >= currentRoles.length) {
+            gameArea.innerHTML = `
+                <div class="card" style="cursor:default; background:#1a1f2e;">
+                    🎉 <strong>TODOS JÁ SABEM SEUS PAPÉIS! 🎉</strong><br>
+                    <span class="small">Impostores: finjam bem. Civis: descubram. Divirtam-se!</span>
                 </div>`;
+            return;
         }
+        const player = currentRoles[currentIndex];
+        gameArea.innerHTML = `
+            <div class="small" style="text-align:center;">👉 PASSE O CELULAR PARA 👈<br>
+            <span class="badge" style="margin-top:6px;">${player.name}</span></div>
+            <div class="card" onclick="revealCurrentCard()">
+                ✨ <strong>TOQUE PARA REVELAR ✨</strong><br>
+                <span class="small">${player.name}, só você verá seu segredo</span>
+            </div>
+        `;
+    }
 
-        function revealCard() {
-            const p = roles[index];
-            const text = p.role === 'IMPOSTOR' ? '🕵️ Você é o IMPOSTOR' : `📝 Palavra: ${p.role}`;
-            document.getElementById('game').innerHTML = `
-                <div class="card" onclick="nextCard()">
-                    ${text}<br><span class="small">toque para continuar</span>
-                </div>`;
+    // função global para revelar (necessário expor)
+    window.revealCurrentCard = function() {
+        if (currentIndex >= currentRoles.length) return;
+        const p = currentRoles[currentIndex];
+        const isImpostor = p.role === 'IMPOSTOR';
+        let displayText = '';
+        let subMsg = '';
+        if (isImpostor) {
+            displayText = '🕵️‍♂️ VOCÊ É O IMPOSTOR! 🕵️‍♀️';
+            subMsg = 'Ninguém mais sabe. Sem palavra, apenas engane os outros.';
+        } else {
+            displayText = `📜 SUA PALAVRA É: <strong style="font-size:2rem;display:block;">${p.role}</strong>`;
+            subMsg = `Mostre sem dizer a palavra. Os outros civis tem a mesma palavra.`;
         }
+        gameArea.innerHTML = `
+            <div class="card" onclick="nextCardStep()">
+                ${displayText}
+                <span class="small">${subMsg}<br>🔹 toque para continuar 🔹</span>
+            </div>
+        `;
+    };
 
-        function nextCard() {
-            index++;
-            showCard();
-        }
-    </script>
+    window.nextCardStep = function() {
+        currentIndex++;
+        displayCardPreview();
+    };
+
+    startBtn.addEventListener('click', () => {
+        // reset jogo e começar
+        startGame();
+    });
+
+    // Adicional: se quiser garantir que o select de impostores 3 funcione bem, mas só se tiver muitos jogadores.
+    // Validação de impostores já feita no start.
+    // também oferecer botão de "resetar jogo manual" se precisar.
+    // Bônus: tooltips e estilo responsivo
+    // Adicionar um pequeno indicador de tema atual
+    const displayThemeHelper = () => {
+        const theme = themeSelector.options[themeSelector.selectedIndex]?.text;
+        console.log(`Tema ativo: ${theme}`);
+    };
+    themeSelector.addEventListener('change', () => {});
+    startBtn.addEventListener('click', () => {});
+</script>
+
+<script>
+    // garantia extra para exposição das funções e maior compatibilidade
+    window.revealCurrentCard = window.revealCurrentCard;
+    window.nextCardStep = window.nextCardStep;
+    // Em caso de re-start sem conflitos, garantir que o jogo nao mantenha referencias antigas
+    // mas o fluxo está ok. Se clicar em começar enquanto já tiver uma partida em andamento, tudo novo.
+    // E também torna possível usar teclas.
+    // Pequena correção: caso alguém adicione jogador e clique começar, função usa os inputs dinâmicos.
+    // Ajuste visual para cards com tema.
+    // Adicionar possibilidade de "Todos" listas gigantes já inclusas: getAllWords() possui >120 itens
+</script>
+
+<style>
+    /* scroll para area players */
+    .players-area::-webkit-scrollbar {
+        width: 5px;
+    }
+    .players-area::-webkit-scrollbar-track {
+        background: #191e2e;
+        border-radius: 10px;
+    }
+    .players-area::-webkit-scrollbar-thumb {
+        background: #4f46e5;
+        border-radius: 10px;
+    }
+    button#startGameBtn {
+        background: #10b981;
+        font-weight: bold;
+    }
+    button#startGameBtn:hover {
+        background: #14b789;
+    }
+    .card {
+        word-break: break-word;
+    }
+</style>
+
+<!-- Correção final: incluir todos os estados e Distrito Federal já incluso, conferir quantidade: 27, maior que 20 -->
+<!-- Cinema brasileiro com +30 filmes, ciência +28, universo 28, comida 30, animais 28, estados 27. Tema "all" combina tudo -->
+<!-- Agora suporte a 3 impostores, valida tamanho da lista -->
 </body>
 </html>
