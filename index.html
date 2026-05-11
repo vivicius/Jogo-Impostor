@@ -315,7 +315,7 @@
         return div;
     }
 
-    function renderPlayers(initialNames = ['Jogador 1', 'Jogador 2', 'Jogador 3', 'Jogador 4', 'Jogador 5']) {
+    function renderPlayers(initialNames = ['Jogador 1', 'Jogador 2']) {
         playersContainer.innerHTML = '';
         for (let name of initialNames) {
             playersContainer.appendChild(createPlayerInput(name));
