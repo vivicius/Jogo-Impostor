@@ -157,12 +157,18 @@
             margin-top: 12px;
         }
 
+        .big {
+            font-size: 1.75rem;
+            color: #9ca3cf;
+            margin-top: 12px;
+        }
+
         .badge {
             background: #4f46e5;
             display: inline-block;
             border-radius: 60px;
             padding: 4px 12px;
-            font-size: 0.7rem;
+            font-size: 1.7rem;
             font-weight: bold;
         }
 
@@ -227,9 +233,9 @@
                 "Ainda Estou Aqui", "Cidade de Deus", "Minha Mãe é uma Peça", "O Auto da Compadecida",
                 "Central do Brasil", "Tropa de Elite", "Que Horas Ela Volta?", "Bacurau",
                 "O Homem Que Copiava", "Lisbela e o Prisioneiro", "2 Filhos de Francisco",
-                "Carandiru", "Estômago", "Durval Discos", "Meu Nome Não é Johnny",  "Até que a Sorte nos Separe",
+                "Carandiru", "Estômago", "Durval Discos", "Meu Nome Não é Johnny", "Até que a Sorte nos Separe",
                 "Os Trapalhões no Auto da Compadecida", "Eduardo e Mônica", "Marighella",
-                "Medida Provisória", "O Palhaço", "Que Deus Ajude", 
+                "Medida Provisória", "O Palhaço", "Que Deus Ajude",
                 "Marte Um", "Pedro e o Lobo", "O Homem do Futuro",
             ],
             ciencia: [ // ciência geral (28 conceitos)
@@ -269,11 +275,11 @@
                 "Rondônia", "Roraima", "Santa Catarina", "São Paulo", "Sergipe", "Tocantins"
             ],
             aleatorio: [ // 26 estados + DF = 27 itens. (Garantido todos)
-                "Mesa","Cadeira","Toca Discos","Trufa","Pararelo","Abáco","Grade","Cadeia","Cajado","Tartarugas Ninja",
-                "Monaliza","Sofá Cama","Ferro de passar","Sopa","Revolução Francesa","Tempo","Zeus","Thor","LEGO","Computador",
-                "Museu","Janta","Londres","Iemanjá","Kiss (a banda)","Inveja","Megamente","Kungfu Panda","Platão","Tarot",
-                "Revista","Vinil","Soberba","Clash Royale","We Pink","Cerveja","Ferro","Ferreiro","Ben 10","Shrek","Formula 1",
-                "Futebol","Estados Unidos","Capoeira"
+                "Mesa", "Cadeira", "Toca Discos", "Trufa", "Pararelo", "Abáco", "Grade", "Cadeia", "Cajado", "Tartarugas Ninja",
+                "Monaliza", "Sofá Cama", "Ferro de passar", "Sopa", "Revolução Francesa", "Tempo", "Zeus", "Thor", "LEGO", "Computador",
+                "Museu", "Janta", "Londres", "Iemanjá", "Kiss (a banda)", "Inveja", "Megamente", "Kungfu Panda", "Platão", "Tarot",
+                "Revista", "Vinil", "Soberba", "Clash Royale", "We Pink", "Cerveja", "Ferro", "Ferreiro", "Ben 10", "Shrek", "Formula 1",
+                "Futebol", "Estados Unidos", "Capoeira"
             ]
 
         };
@@ -392,7 +398,7 @@
             }
             const player = currentRoles[currentIndex];
             gameArea.innerHTML = `
-            <div class="small" style="text-align:center;">👉 PASSE O CELULAR PARA 👈<br>
+            <div class="big" style="text-align:center;">👉 PASSE O CELULAR PARA 👈<br>
             <span class="badge" style="margin-top:6px;">${player.name}</span></div>
             <div class="card" onclick="revealCurrentCard()">
                 ✨ <strong>TOQUE PARA REVELAR ✨</strong><br>
